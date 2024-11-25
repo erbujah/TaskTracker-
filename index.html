@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TaskTracker - Your go-to tool for task management.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    <title>TaskTracker</title>
+    <style>
+        #toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        #toast.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <h1>TaskTracker</h1>
+            <p>Organize your life, one task at a time.</p>
+        </div>
+    </header>
+    <main>
+        <section id="task-form">
+            <h2>Add a New Task</h2>
+            <form id="add-task-form" onsubmit="addTask(event)">
+                <input type="text" id="task-title" placeholder="Task Title" required>
+                <textarea id="task-description" placeholder="Task Description"></textarea>
+                <input type="date" id="task-date" required>
+                <select id="task-priority">
+                    <option value="High">High Priority</option>
+                    <option value="Medium">Medium Priority</option>
+                    <option value="Low">Low Priority</option>
+                </select>
+                <button type="submit">Add Task</button>
+            </form>
+        </section>
+        <section id="task-list">
+            <h2>Your Tasks</h2>
+            <div id="filter-controls">
+                <label for="filter-priority">Filter by Priority:</label>
+                <select id="filter-priority" onchange="filterTasks()">
+                    <option value="All">All</option>
+                    <option value="High">High</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Low">Low</option>
+                </select>
+            </div>
+            <ul id="tasks"></ul>
+        </section>
+        <div id="sort-controls">
+            <button onclick="sortTasks('date')">Sort by Due Date</button>
+            <button onclick="sortTasks('priority')">Sort by Priority</button>
+        </div>
+        <div id="toast"></div>
+    </main>
+    <footer>
+        <p>© 2024 TaskTracker | Created with ❤️ for productivity.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
